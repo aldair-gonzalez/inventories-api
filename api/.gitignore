@@ -33,3 +33,12 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Ignora todos los archivos .env
+*.env
+*.env.*local
+
+# Excepto los siguientes archivos .env
+!.env.development
+!.env.production
+!.env.test

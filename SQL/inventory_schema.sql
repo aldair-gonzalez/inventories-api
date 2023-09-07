@@ -1,5 +1,11 @@
-CREATE DATABASE IF NOT EXISTS inventarios;
-USE inventarios;
+CREATE DATABASE IF NOT EXISTS dev_inventarios;
+USE dev_inventarios;
+
+CREATE DATABASE IF NOT EXISTS prod_inventarios;
+USE prod_inventarios;
+
+CREATE DATABASE IF NOT EXISTS test_inventarios;
+USE test_inventarios;
 
 CREATE TABLE IF NOT EXISTS categories (
 	category_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
