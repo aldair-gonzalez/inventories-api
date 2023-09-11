@@ -1,6 +1,10 @@
-## Purpose: This table stores the discounts.
+## Propósito
 
-```SQL
+Esta tabla almacena los descuentos.
+
+### SQL
+
+```sql
   CREATE TABLE discounts (
     discount_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     discount_type VARCHAR(255) NOT NULL,
@@ -12,18 +16,18 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* discount_id: The unique identifier for the discount.
-* discount_type: The type of discount. This field can be one of the following values:
-    * `Percentage`: The discount is a percentage of the product price.
-    * `Fixed`: The discount is a fixed amount.
-* discount_amount: The amount of the discount.
-* discount_start_date: The start date of the discount.
-* discount_end_date: The end date of the discount.
-* product: The product ID of the product the discount applies to.
+* discount_id: El identificador único del descuento.
+* discount_type: El tipo de descuento. Este campo puede ser uno de los siguientes valores:
+  * Percentage: El descuento es un porcentaje del precio del producto.
+  * Fixed: El descuento es una cantidad fija.
+* discount_amount: El importe del descuento.
+* discount_start_date: La fecha de inicio del descuento.
+* discount_end_date: La fecha de finalización del descuento.
+* product: El ID del producto al que se aplica el descuento.
 
-### Constraints:
+### Restricciones
 
-* The discount_id field is unique.
-* The product field references the product_code field in the products table.
+* El campo discount_id es único.
+* El campo product hace referencia al campo product_code de la tabla products.

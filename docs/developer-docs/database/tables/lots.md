@@ -1,6 +1,10 @@
-## Purpose: This table stores the lots.
+## Propósito
 
-```SQL
+Esta tabla almacena los lotes.
+
+### SQL
+
+```sql
   CREATE TABLE lots (
     lot_number INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     purchase_order INTEGER NOT NULL,
@@ -8,12 +12,12 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* lot_number: The unique identifier for the lot.
-* purchase_order: The purchase order ID of the lot.
+* `lot_number`: El identificador único del lote.
+* `purchase_order`: El ID de la orden de compra del lote.
 
-### Constraints:
+### Restricciones
 
-* The lot_number field is unique.
-* The purchase_order field references the purchase_order_id field in the purchase_orders table.
+* El campo `lot_number` es único.
+* El campo `purchase_order` hace referencia al campo `purchase_order_id` de la tabla `purchase_orders`.

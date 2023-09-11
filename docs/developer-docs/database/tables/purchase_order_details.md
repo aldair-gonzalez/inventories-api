@@ -1,6 +1,10 @@
-## Purpose: This table stores the details of the purchase orders.
+## Propósito
 
-```SQL
+Esta tabla almacena los detalles de las órdenes de compra.
+
+### SQL
+
+```sql
   CREATE TABLE purchase_order_details (
     purchase_order_details_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     quantity FLOAT NOT NULL,
@@ -12,16 +16,16 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* purchase_order_details_id: The unique identifier for the purchase order detail.
-* quantity: The quantity of the product in the purchase order detail.
-* price: The price of the product in the purchase order detail.
-* product: The product ID of the product in the purchase order detail.
-* purchase_order: The purchase order ID of the purchase order detail.
+* `purchase_order_details_id`: El identificador único del detalle de la orden de compra.
+* `quantity`: La cantidad del producto en el detalle de la orden de compra.
+* `price`: El precio del producto en el detalle de la orden de compra.
+* `product`: El ID del producto del producto en el detalle de la orden de compra.
+* `purchase_order`: El ID de la orden de compra del detalle de la orden de compra.
 
-### Constraints:
+### Restricciones
 
-* The purchase_order_details_id field is unique.
-* The product field references the product_code field in the products table.
-* The purchase_order field references the purchase_order_id field in the purchase_orders table.
+* El campo `purchase_order_details_id` es único.
+* El campo `product` hace referencia al campo `product_code` de la tabla `products`.
+* El campo `purchase_order` hace referencia al campo `purchase_order_id` de la tabla `purchase_orders`.

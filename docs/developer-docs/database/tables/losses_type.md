@@ -1,6 +1,10 @@
-## Purpose: This table stores the loss types.
+## Propósito
 
-```SQL
+Esta tabla almacena los tipos de pérdida.
+
+### SQL
+
+```sql
   CREATE TABLE losses_type (
     loss_type_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -8,12 +12,13 @@
   );
 ```
 
-### Fields:
 
-* loss_type_id: The unique identifier for the loss type.
-* name: The name of the loss type.
-* description: A description of the loss type.
+### Campos
 
-### Constraints:
+* `loss_type_id`: El identificador único del tipo de pérdida.
+* `name`: El nombre del tipo de pérdida.
+* `description`: Una descripción del tipo de pérdida.
 
-* The loss_type_id field is unique.
+### Restricciones
+
+* El campo `loss_type_id` es único.

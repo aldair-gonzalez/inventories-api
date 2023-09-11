@@ -1,6 +1,10 @@
-## Purpose: This table stores the purchase orders.
+## Propósito
 
-```SQL
+Esta tabla almacena las órdenes de compra.
+
+### SQL
+
+```sql
   CREATE TABLE purchase_orders (
     purchase_order_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -10,14 +14,14 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* purchase_order_id: The unique identifier for the purchase order.
-* date: The date of the purchase order.
-* state: The state of the purchase order.
-* delivery_date: The delivery date of the purchase order.
-* total_amount: The total amount of the purchase order.
+* `purchase_order_id`: El identificador único de la orden de compra.
+* `date`: La fecha de la orden de compra.
+* `state`: El estado de la orden de compra.
+* `delivery_date`: La fecha de entrega de la orden de compra.
+* `total_amount`: El importe total de la orden de compra.
 
-### Constraints:
+### Restricciones:
 
-* The purchase_order_id field is unique.
+* El campo `purchase_order_id` es único.

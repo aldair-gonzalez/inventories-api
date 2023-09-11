@@ -1,6 +1,10 @@
-## Purpose: This table stores the finances.
+## Propósito
 
-```SQL
+Esta tabla almacena las finanzas.
+
+### SQL
+
+```sql
   CREATE TABLE finances (
     finance_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date DATE NOT NULL,
@@ -11,15 +15,15 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* finance_id: The unique identifier for the finance.
-* date: The date of the finance.
-* amount: The amount of the finance.
-* description: A description of the finance.
-* transaction: The transaction ID of the finance.
+* finance_id: El identificador único de la financiación.
+* date: La fecha de la financiación.
+* amount: El importe de la financiación.
+* description: Una descripción de la financiación.
+* transaction: El ID de la transacción de la financiación.
 
-### Constraints:
+### Restricciones
 
-* The finance_id field is unique.
-* The transaction field references the transaction_id field in the transactions table.
+* El campo finance_id es único.
+* El campo transaction hace referencia al campo transaction_id de la tabla transactions.

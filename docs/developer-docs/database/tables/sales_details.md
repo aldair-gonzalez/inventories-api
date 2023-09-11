@@ -1,6 +1,10 @@
-## Purpose: This table stores the details of the sales.+
+## Propósito
 
-```SQL
+Esta tabla almacena los detalles de las ventas.
+
+### SQL
+
+```sql
   CREATE TABLE sales_details (
     sale_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     quantity FLOAT NOT NULL,
@@ -10,14 +14,14 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* sale_id: The unique identifier for the sale detail.
-* quantity: The quantity of the product in the sale detail.
-* price: The price of the product in the sale detail.
-* product: The product ID of the product in the sale detail.
+* `sale_id`: El identificador único del detalle de la venta.
+* `quantity`: La cantidad del producto en el detalle de la venta.
+* `price`: El precio del producto en el detalle de la venta.
+* `product`: El ID del producto del producto en el detalle de la venta.
 
-### Constraints:
+### Restricciones:
 
-* The sale_id field is unique.
-* The product field references the product_code field in the products table.
+* El campo `sale_id` es único.
+* El campo `product` hace referencia al campo `product_code` de la tabla `products`.

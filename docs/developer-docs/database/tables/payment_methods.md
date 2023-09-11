@@ -1,6 +1,10 @@
-## Purpose: This table stores the payment methods.
+## Propósito
 
-```SQL
+Esta tabla almacena los métodos de pago.
+
+### SQL
+
+```sql
   CREATE TABLE payment_methods (
     payment_method_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -8,12 +12,12 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* payment_method_id: The unique identifier for the payment method.
-* name: The name of the payment method.
-* description: A description of the payment method.
+* `payment_method_id`: El identificador único del método de pago.
+* `name`: El nombre del método de pago.
+* `description`: Una descripción del método de pago.
 
-### Constraints:
+### Restricciones
 
-* The payment_method_id field is unique.
+* El campo `payment_method_id` es único.

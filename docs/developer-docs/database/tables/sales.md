@@ -1,6 +1,10 @@
-## Purpose: This table stores the sales.
+## Propósito
 
-```SQL
+Esta tabla almacena las ventas.
+
+### SQL
+
+```sql
   CREATE TABLE sales (
     sale_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date DATE NOT NULL,
@@ -10,14 +14,14 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* sale_id: The unique identifier for the sale.
-* date: The date of the sale.
-* total_amount: The total amount of the sale.
-* payment_method: The payment method ID of the sale.
+* `sale_id`: El identificador único de la venta.
+* `date`: La fecha de la venta.
+* `total_amount`: El importe total de la venta.
+* `payment_method`: El ID del método de pago de la venta.
 
-### Constraints:
+### Restricciones:
 
-* The sale_id field is unique.
-* The payment_method field references the payment_method_id field in the payment_methods table.
+* El campo `sale_id` es único.
+* El campo `payment_method` hace referencia al campo `payment_method_id` de la tabla `payment_methods`.

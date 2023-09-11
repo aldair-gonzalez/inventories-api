@@ -1,6 +1,10 @@
-## Purpose: This table stores the losses.
+## Propósito
 
-```SQL
+Esta tabla almacena las pérdidas.
+
+### SQL
+
+```sql
   CREATE TABLE losses (
     losse_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date DATE NOT NULL,
@@ -14,18 +18,18 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* losse_id: The unique identifier for the loss.
-* date: The date of the loss.
-* description: A description of the loss.
-* quantity: The quantity of the product lost.
-* amount: The amount of the loss.
-* product: The product ID of the product lost.
-* loss_type: The loss type ID of the loss.
+* `losse_id`: El identificador único de la pérdida.
+* `date`: La fecha de la pérdida.
+* `description`: Una descripción de la pérdida.
+* `quantity`: La cantidad del producto perdido.
+* `amount`: El importe de la pérdida.
+* `product`: El ID del producto que se ha perdido.
+* `loss_type`: El ID del tipo de pérdida.
 
-### Constraints:
+### Restricciones
 
-* The losse_id field is unique.
-* The product field references the product_code field in the products table.
-* The loss_type field references the loss_type_id field in the losses_type table.
+* El campo `losse_id` es único.
+* El campo `product` hace referencia al campo `product_code` de la tabla `products`.
+* El campo `loss_type` hace referencia al campo `loss_type_id` de la tabla `losses_type`.

@@ -1,6 +1,10 @@
-## Purpose: This table stores the inventories.
+## Propósito
 
-```SQL
+Esta tabla almacena los inventarios.
+
+### SQL
+
+```sql
   CREATE TABLE inventories (
     inventory_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     quantity FLOAT NOT NULL,
@@ -16,20 +20,20 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* inventory_id: The unique identifier for the inventory.
-* quantity: The quantity of the product in the inventory.
-* unit_cost: The unit cost of the product in the inventory.
-* purchase_date: The date the product was purchased.
-* expiration_date: The expiration date of the product.
-* product: The product ID of the product in the inventory.
-* purchase_order: The purchase order ID of the inventory.
-* lot: The lot number of the inventory.
+* `inventory_id`: El identificador único del inventario.
+* `quantity`: La cantidad del producto en el inventario.
+* `unit_cost`: El coste unitario del producto en el inventario.
+* `purchase_date`: La fecha en que se compró el producto.
+* `expiration_date`: La fecha de caducidad del producto.
+* `product`: El ID del producto del inventario.
+* `purchase_order`: El ID de la orden de compra del inventario.
+* `lot`: El número de lote del inventario.
 
-### Constraints:
+### Restricciones
 
-* The inventory_id field is unique.
-* The product field references the product_code field in the products table.
-* The purchase_order field references the purchase_order_id field in the purchase_orders table.
-* The lot field references the lot_number field in the lots table.
+* El campo `inventory_id` es único.
+* El campo `product` hace referencia al campo `product_code` de la tabla `products`.
+* El campo `purchase_order` hace referencia al campo `purchase_order_id` de la tabla `purchase_orders`.
+* El campo `lot` hace referencia al campo `lot_number` de la tabla `lots`.

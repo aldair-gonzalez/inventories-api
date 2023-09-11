@@ -1,4 +1,8 @@
-## Purpose: This table stores the categories of products.
+## Propósito:
+
+Esta tabla almacena las categorías de productos.
+
+### SQL
 
 ```SQL
   CREATE TABLE categories (
@@ -8,12 +12,12 @@
   );
 ```
 
-### Fields:
+### Campos:
 
-* category_id: The unique identifier for the category.
-* name: The name of the category.
-* description: A description of the category.
+* category_id: El identificador único de la categoría
+* name: El nombre de la categoría.
+* description: Una descripción de la categoría.
 
-### Constraints:
+### Restricciones:
 
-* The name field is unique.
+* El campo name es único.

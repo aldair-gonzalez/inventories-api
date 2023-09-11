@@ -1,6 +1,10 @@
-## Purpose: This table stores the vendors of products.
+## Propósito
 
-```SQL
+Esta tabla almacena los proveedores de productos.
+
+### SQL
+
+```sql
   CREATE TABLE vendors (
     vendor_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) UNIQUE NOT NULL,
@@ -16,20 +20,20 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* vendor_id: The unique identifier for the vendor.
-* name: The name of the vendor.
-* description: A description of the vendor.
-* address: The address of the vendor.
-* city: The city of the vendor.
-* state: The state of the vendor.
-* zip_code: The zip code of the vendor.
-* phone_number: The phone number of the vendor.
-* email_address: The email address of the vendor.
-* website: The website of the vendor.
-* credit_limit: The credit limit of the vendor.
+* `vendor_id`: El identificador único del proveedor.
+* `name`: El nombre del proveedor.
+* `description`: Una descripción del proveedor.
+* `address`: La dirección del proveedor.
+* `city`: La ciudad del proveedor.
+* `state`: El estado del proveedor.
+* `zip_code`: El código postal del proveedor.
+* `phone_number`: El número de teléfono del proveedor.
+* `email_address`: La dirección de correo electrónico del proveedor.
+* `website`: La página web del proveedor.
+* `credit_limit`: El límite de crédito del proveedor.
 
-### Constraints:
+### Restricciones:
 
-* The name field is unique.
+* El campo `name` es único.

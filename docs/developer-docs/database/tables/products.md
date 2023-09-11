@@ -1,6 +1,10 @@
-## Purpose: This table stores the products.
+## Propósito
 
-```SQL
+Esta tabla almacena los productos.
+
+### SQL
+
+```sql
   CREATE TABLE products (
     product_code INTEGER UNIQUE PRIMARY KEY NOT NULL,
     name VARCHAR(255) UNIQUE NOT NULL,
@@ -20,24 +24,24 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* product_code: The unique identifier for the product.
-* name: The name of the product.
-* description: A description of the product.
-* unit_measure: The unit of measure of the product.
-* quantity: The current quantity of the product in stock.
-* stock_min: The minimum stock level for the product.
-* stock_max: The maximum stock level for the product.
-* sale_price: The sale price of the product.
-* demand: The demand for the product.
-* initial_quantity: The initial quantity of the product in stock.
-* final_quantity: The final quantity of the product in stock.
-* category: The category of the product.
-* vendor: The vendor of the product.
+* `product_code`: El identificador único del producto.
+* `name`: El nombre del producto.
+* `description`: Una descripción del producto.
+* `unit_measure`: La unidad de medida del producto.
+* `quantity`: La cantidad actual del producto en stock.
+* `stock_min`: El nivel mínimo de stock para el producto.
+* `stock_max`: El nivel máximo de stock para el producto.
+* `sale_price`: El precio de venta del producto.
+* `demand`: La demanda del producto.
+* `initial_quantity`: La cantidad inicial del producto en stock.
+* `final_quantity`: La cantidad final del producto en stock.
+* `category`: La categoría del producto.
+* `vendor`: El proveedor del producto.
 
-### Constraints:
+### Restricciones
 
-* The product_code field is unique.
-* The category field references the category_id field in the categories table.
-* The vendor field references the vendor_id field in the vendors table.
+* El campo `product_code` es único.
+* El campo `category` hace referencia al campo `category_id` de la tabla `categories`.
+* El campo `vendor` hace referencia al campo `vendor_id` de la tabla `vendors`.

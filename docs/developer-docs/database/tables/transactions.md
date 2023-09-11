@@ -1,6 +1,10 @@
-## Purpose: This table stores the transactions.
+## Propósito
 
-```SQL
+Esta tabla almacena las transacciones.
+
+### SQL
+
+```sql
   CREATE TABLE transactions (
     transaction_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -8,12 +12,12 @@
   );
 ```
 
-### Fields:
+### Campos
 
-* transaction_id: The unique identifier for the transaction.
-* name: The name of the transaction.
-* description: A description of the transaction.
+* `transaction_id`: El identificador único de la transacción.
+* `name`: El nombre de la transacción.
+* `description`: Una descripción de la transacción.
 
-### Constraints:
+### Restricciones:
 
-* The transaction_id field is unique.
+* El campo `transaction_id` es único.
