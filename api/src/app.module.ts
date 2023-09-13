@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoriesModule } from './categories/categories.module';
+import { Categories } from './categories/entities/category.entity';
 
 @Module({
   imports: [
@@ -27,10 +29,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
-        entities: [],
+        entities: [Categories],
       }),
       inject: [ConfigService],
     }),
+    CategoriesModule,
   ],
   controllers: [],
   providers: [],
