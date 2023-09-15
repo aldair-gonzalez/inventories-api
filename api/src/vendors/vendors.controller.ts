@@ -45,6 +45,8 @@ export class VendorsController {
   @Get(':vendor_id')
   async findOne(@Param('vendor_id') vendor_id: number) {
     try {
+      if (isNaN(vendor_id))
+        throw new BadRequestException('vendor_id should be a number');
       const vendor = await this.vendorsService.findOne(vendor_id);
       if (!vendor) throw new NotFoundException('Vendor not found');
       return vendor;
@@ -61,6 +63,8 @@ export class VendorsController {
     @Body() updateVendorDto: UpdateVendorDto,
   ) {
     try {
+      if (isNaN(vendor_id))
+        throw new BadRequestException('vendor_id should be a number');
       const vendor = await this.vendorsService.findOne(vendor_id);
       if (!vendor) throw new NotFoundException('Vendor not found');
       ParseTrimFromDto(updateVendorDto);
@@ -72,7 +76,7 @@ export class VendorsController {
     }
   }
 
-  @Delete(':id')
+  @Delete(':vendor_id')
   @HttpCode(204)
   async remove(@Param('vendor_id') vendor_id: number) {
     try {
