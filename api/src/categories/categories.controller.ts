@@ -13,6 +13,7 @@ import {
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { ParseTrimFromDto } from 'src/utils/trim';
 
 @Controller('categories')
 export class CategoriesController {
@@ -21,6 +22,7 @@ export class CategoriesController {
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
     try {
+      ParseTrimFromDto(createCategoryDto);
       return await this.categoriesService.create(createCategoryDto);
     } catch (error) {
       if (error.name || error.sqlState)
@@ -58,6 +60,7 @@ export class CategoriesController {
       throw new BadRequestException('category_id should be a number');
     const category = await this.categoriesService.findOne({ category_id });
     if (!category) throw new NotFoundException('category not found');
+    ParseTrimFromDto(UpdateCategoryDto);
     return await this.categoriesService.update(+category_id, updateCategoryDto);
   }
 
