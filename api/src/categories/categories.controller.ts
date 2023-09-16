@@ -44,11 +44,17 @@ export class CategoriesController {
 
   @Get(':category_id')
   async findOne(@Param('category_id') category_id: number) {
-    if (isNaN(category_id))
-      throw new BadRequestException('category_id should be a number');
-    const category = await this.categoriesService.findOne(category_id);
-    if (!category) throw new NotFoundException('category not found');
-    return category;
+    try {
+      if (isNaN(category_id))
+        throw new BadRequestException('category_id should be a number');
+      const category = await this.categoriesService.findOne(category_id);
+      if (!category) throw new NotFoundException('category not found');
+      return category;
+    } catch (error) {
+      if (error.name || error.sqlState)
+        throw new BadRequestException(error.message);
+      throw error;
+    }
   }
 
   @Patch(':category_id')
