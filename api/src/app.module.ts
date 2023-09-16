@@ -6,6 +6,8 @@ import { CategoriesModule } from './categories/categories.module';
 import { Categories } from './categories/entities/category.entity';
 import { VendorsModule } from './vendors/vendors.module';
 import { Vendors } from './vendors/entities/vendor.entity';
+import { ProductsModule } from './products/products.module';
+import { Products } from './products/entities/product.entity';
 
 @Module({
   imports: [
@@ -31,12 +33,13 @@ import { Vendors } from './vendors/entities/vendor.entity';
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
-        entities: [Categories, Vendors],
+        entities: [Categories, Vendors, Products],
       }),
       inject: [ConfigService],
     }),
     CategoriesModule,
     VendorsModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],
