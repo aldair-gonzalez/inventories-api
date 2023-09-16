@@ -9,15 +9,12 @@ export class CreateVendorDto {
   @IsString()
   description: string;
 
-  @IsOptional()
   @IsString()
   address: string;
 
-  @IsOptional()
   @IsString()
   city: string;
 
-  @IsOptional()
   @IsString()
   state: string;
 
@@ -29,11 +26,9 @@ export class CreateVendorDto {
   @IsNumber()
   phone_number: number;
 
-  @IsOptional()
   @IsString()
   email_address: string;
 
-  @IsOptional()
   @IsString()
   website: string;
 
