@@ -9,11 +9,13 @@ import configuration from './config/configuration';
 import { CategoriesModule } from './categories/categories.module';
 import { VendorsModule } from './vendors/vendors.module';
 import { ProductsModule } from './products/products.module';
+import { TransactionsModule } from './transactions/transactions.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
 import { Vendors } from './vendors/entities/vendor.entity';
 import { Products } from './products/entities/product.entity';
+import { Transactions } from './transactions/entities/transaction.entity';
 
 @Module({
   imports: [
@@ -39,13 +41,14 @@ import { Products } from './products/entities/product.entity';
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
-        entities: [Categories, Vendors, Products],
+        entities: [Categories, Vendors, Products, Transactions],
       }),
       inject: [ConfigService],
     }),
     CategoriesModule,
     VendorsModule,
     ProductsModule,
+    TransactionsModule,
   ],
   controllers: [],
   providers: [],
