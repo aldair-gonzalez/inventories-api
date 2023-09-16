@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS purchase_order_details (
 	price FLOAT NOT NULL,
 	product BIGINT NOT NULL,
 	purchase_order BIGINT NOT NULL,
-	FOREIGN KEY (product) REFERENCES products(product_code),
+	FOREIGN KEY (product) REFERENCES products(product_id),
 	FOREIGN KEY (purchase_order) REFERENCES purchase_orders(purchase_order_id)
 );
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS inventories (
 	product BIGINT NOT NULL,
 	purchase_order BIGINT NOT NULL,
 	lot BIGINT,
-	FOREIGN KEY (product) REFERENCES products(product_code),
+	FOREIGN KEY (product) REFERENCES products(product_id),
 	FOREIGN KEY (purchase_order) REFERENCES purchase_orders(purchase_order_id),
 	FOREIGN KEY (lot) REFERENCES lots(lot_number)
 );
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS discounts (
 	discount_start_date DATE NOT NULL,
 	discount_end_date DATE NOT NULL,
 	product BIGINT NOT NULL,
-	FOREIGN KEY (product) REFERENCES products(product_code)
+	FOREIGN KEY (product) REFERENCES products(product_id)
 );
 
 CREATE TABLE IF NOT EXISTS payment_methods (
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS sales_details (
 	quantity FLOAT NOT NULL,
 	price FLOAT NOT NULL,
 	product BIGINT NOT NULL,
-	FOREIGN KEY (product) REFERENCES products(product_code)
+	FOREIGN KEY (product) REFERENCES products(product_id)
 );
 
 CREATE TABLE IF NOT EXISTS losses_type (
@@ -145,6 +145,6 @@ CREATE TABLE IF NOT EXISTS losses (
 	amount FLOAT NOT NULL,
 	product BIGINT NOT NULL,
 	loss_type BIGINT NOT NULL,
-	FOREIGN KEY (product) REFERENCES products(product_code),
+	FOREIGN KEY (product) REFERENCES products(product_id),
 	FOREIGN KEY (loss_type) REFERENCES losses_type(loss_type_id)
 );
