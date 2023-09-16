@@ -1,12 +1,18 @@
-import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
+
+// Config
+import configuration from './config/configuration';
+
+// Modules
 import { CategoriesModule } from './categories/categories.module';
-import { Categories } from './categories/entities/category.entity';
 import { VendorsModule } from './vendors/vendors.module';
-import { Vendors } from './vendors/entities/vendor.entity';
 import { ProductsModule } from './products/products.module';
+
+// Entities
+import { Categories } from './categories/entities/category.entity';
+import { Vendors } from './vendors/entities/vendor.entity';
 import { Products } from './products/entities/product.entity';
 
 @Module({
