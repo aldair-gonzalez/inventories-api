@@ -20,15 +20,8 @@ export class CategoriesService {
     return await this.categoriesRepository.find();
   }
 
-  async findOne({
-    name,
-    category_id,
-  }: {
-    name?: string;
-    category_id?: number;
-  }): Promise<Categories> {
-    if (name) return await this.categoriesRepository.findOneBy({ name });
-    else return await this.categoriesRepository.findOneBy({ category_id });
+  async findOne(category_id: number): Promise<Categories> {
+    return await this.categoriesRepository.findOne({ where: { category_id } });
   }
 
   async update(

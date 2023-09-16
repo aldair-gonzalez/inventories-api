@@ -37,16 +37,10 @@ export class CategoriesController {
   }
 
   @Get(':category_id')
-  async findOne(
-    @Param('category_id') category_id: number,
-    @Param('name') name: string,
-  ) {
+  async findOne(@Param('category_id') category_id: number) {
     if (isNaN(category_id))
       throw new BadRequestException('category_id should be a number');
-    const category = await this.categoriesService.findOne({
-      name,
-      category_id,
-    });
+    const category = await this.categoriesService.findOne(category_id);
     if (!category) throw new NotFoundException('category not found');
     return category;
   }
@@ -58,7 +52,7 @@ export class CategoriesController {
   ) {
     if (isNaN(+category_id))
       throw new BadRequestException('category_id should be a number');
-    const category = await this.categoriesService.findOne({ category_id });
+    const category = await this.categoriesService.findOne(category_id);
     if (!category) throw new NotFoundException('category not found');
     ParseTrimFromDto(UpdateCategoryDto);
     return await this.categoriesService.update(+category_id, updateCategoryDto);
@@ -70,7 +64,7 @@ export class CategoriesController {
     try {
       if (isNaN(+category_id))
         throw new BadRequestException('category_id should be a number');
-      const category = await this.categoriesService.findOne({ category_id });
+      const category = await this.categoriesService.findOne(category_id);
       if (!category) throw new NotFoundException('category not found');
       await this.categoriesService.remove(+category_id);
     } catch (error) {
