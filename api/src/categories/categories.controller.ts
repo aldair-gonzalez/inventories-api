@@ -33,7 +33,13 @@ export class CategoriesController {
 
   @Get()
   async findAll() {
-    return await this.categoriesService.findAll();
+    try {
+      return await this.categoriesService.findAll();
+    } catch (error) {
+      if (error.name || error.sqlState)
+        throw new BadRequestException(error.message);
+      throw error;
+    }
   }
 
   @Get(':category_id')
