@@ -3,10 +3,6 @@ import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class CreateProductDto {
   @IsNotEmpty()
   @IsNumber()
-  product_id: number;
-
-  @IsNotEmpty()
-  @IsNumber()
   product_code: number;
 
   @IsNotEmpty()
