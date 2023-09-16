@@ -57,7 +57,7 @@ export class ProductsController {
     }
   }
 
-  @Patch(':id')
+  @Patch(':product_id')
   async update(
     @Param('product_id') product_id: number,
     @Body() updateProductDto: UpdateProductDto,
@@ -76,7 +76,7 @@ export class ProductsController {
     }
   }
 
-  @Delete(':id')
+  @Delete(':product_id')
   @HttpCode(204)
   async remove(@Param('product_id') product_id: number) {
     try {
