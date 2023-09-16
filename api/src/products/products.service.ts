@@ -23,7 +23,10 @@ export class ProductsService {
   }
 
   async findOne(product_id: number): Promise<Products> {
-    return await this.productsRepository.findOne({ where: { product_id } });
+    return await this.productsRepository.findOne({
+      where: { product_id },
+      relations: ['category', 'vendor'],
+    });
   }
 
   async update(
