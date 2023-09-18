@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS finances (
 CREATE TABLE IF NOT EXISTS order_statuses (
   order_status_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
-)
+  description VARCHAR(255) NOT NULL
+);
 
 
 CREATE TABLE IF NOT EXISTS purchase_orders (
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS purchase_orders (
 	date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	delivery_date DATE NOT NULL,
 	total_amount FLOAT NOT NULL,
-  vendor BIGINT NOT NULL,
+  supplier BIGINT NOT NULL,
 	order_status BIGINT NOT NULL,
-  FOREIGN KEY (vendor) REFERENCES vendors(vendor_id),
+  FOREIGN KEY (supplier) REFERENCES suppliers(supplier_id),
   FOREIGN KEY (order_status) REFERENCES order_statuses(order_status_id)
 );
 
