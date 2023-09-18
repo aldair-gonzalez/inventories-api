@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS categories (
 	description VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS vendors (
-	vendor_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS suppliers (
+	supplier_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) UNIQUE NOT NULL,
 	description VARCHAR(255) NOT NULL,
 	address VARCHAR(255),
@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS products (
 	initial_quantity FLOAT NOT NULL,
 	final_quantity FLOAT,
 	category BIGINT NOT NULL,
-	vendor BIGINT NOT NULL,
+	supplier BIGINT NOT NULL,
 	FOREIGN KEY (category) REFERENCES categories(category_id),
-	FOREIGN KEY (vendor) REFERENCES vendors(vendor_id)
+	FOREIGN KEY (supplier) REFERENCES suppliers(supplier_id)
 );
 
 CREATE TABLE IF NOT EXISTS transactions (
@@ -61,12 +61,22 @@ CREATE TABLE IF NOT EXISTS finances (
 	FOREIGN KEY (transaction) REFERENCES transactions(transaction_id)
 );
 
+CREATE TABLE IF NOT EXISTS order_statuses (
+  order_status_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+)
+
+
 CREATE TABLE IF NOT EXISTS purchase_orders (
 	purchase_order_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	state VARCHAR(255) NOT NULL,
 	delivery_date DATE NOT NULL,
-	total_amount FLOAT NOT NULL
+	total_amount FLOAT NOT NULL,
+  vendor BIGINT NOT NULL,
+	order_status BIGINT NOT NULL,
+  FOREIGN KEY (vendor) REFERENCES vendors(vendor_id),
+  FOREIGN KEY (order_status) REFERENCES order_statuses(order_status_id)
 );
 
 CREATE TABLE IF NOT EXISTS purchase_order_details (
