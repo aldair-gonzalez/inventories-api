@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('vendors')
-export class Vendors {
+@Entity('suppliers')
+export class Suppliers {
   @PrimaryGeneratedColumn()
-  vendor_id: number;
+  supplier_id: number;
 
   @Column({ unique: true })
   name: string;

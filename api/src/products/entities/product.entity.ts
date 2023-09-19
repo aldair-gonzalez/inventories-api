@@ -1,5 +1,5 @@
 import { Categories } from 'src/categories/entities/category.entity';
-import { Vendors } from 'src/vendors/entities/vendor.entity';
+import { Suppliers } from 'src/suppliers/entities/supplier.entity';
 import {
   Column,
   Entity,
@@ -50,7 +50,7 @@ export class Products {
   @JoinColumn({ name: 'category' })
   category: number;
 
-  @ManyToOne(() => Vendors)
-  @JoinColumn({ name: 'vendor' })
-  vendor: number;
+  @ManyToOne(() => Suppliers)
+  @JoinColumn({ name: 'supplier' })
+  supplier: number;
 }

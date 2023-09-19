@@ -7,15 +7,16 @@ import configuration from './config/configuration';
 
 // Modules
 import { CategoriesModule } from './categories/categories.module';
-import { VendorsModule } from './vendors/vendors.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
 import { ProductsModule } from './products/products.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { FinancesModule } from './finances/finances.module';
 import { OrderStatusesModule } from './order-statuses/order-statuses.module';
+import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
-import { Vendors } from './vendors/entities/vendor.entity';
+import { Suppliers } from './suppliers/entities/supplier.entity';
 import { Products } from './products/entities/product.entity';
 import { Transactions } from './transactions/entities/transaction.entity';
 import { Finances } from './finances/entities/finance.entity';
@@ -47,7 +48,7 @@ import { OrderStatuses } from './order-statuses/entities/order-status.entity';
         database: configService.get<string>('database.name'),
         entities: [
           Categories,
-          Vendors,
+          Suppliers,
           Products,
           Transactions,
           Finances,
@@ -57,11 +58,12 @@ import { OrderStatuses } from './order-statuses/entities/order-status.entity';
       inject: [ConfigService],
     }),
     CategoriesModule,
-    VendorsModule,
+    SuppliersModule,
     ProductsModule,
     TransactionsModule,
     FinancesModule,
     OrderStatusesModule,
+    PurchaseOrdersModule,
   ],
   controllers: [],
   providers: [],

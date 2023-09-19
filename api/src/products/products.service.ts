@@ -18,14 +18,14 @@ export class ProductsService {
 
   async findAll(): Promise<Products[]> {
     return await this.productsRepository.find({
-      relations: ['category', 'vendor'],
+      relations: ['category', 'supplier'],
     });
   }
 
   async findOne(product_id: number): Promise<Products> {
     return await this.productsRepository.findOne({
       where: { product_id },
-      relations: ['category', 'vendor'],
+      relations: ['category', 'supplier'],
     });
   }
 

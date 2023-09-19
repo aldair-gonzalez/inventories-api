@@ -10,20 +10,20 @@ import {
   NotFoundException,
   HttpCode,
 } from '@nestjs/common';
-import { VendorsService } from './vendors.service';
-import { CreateVendorDto } from './dto/create-vendor.dto';
-import { UpdateVendorDto } from './dto/update-vendor.dto';
+import { SuppliersService } from './suppliers.service';
+import { CreateSupplierDto } from './dto/create-supplier.dto';
+import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
 
-@Controller('vendors')
-export class VendorsController {
-  constructor(private readonly vendorsService: VendorsService) {}
+@Controller('suppliers')
+export class SuppliersController {
+  constructor(private readonly suppliersService: SuppliersService) {}
 
   @Post()
-  async create(@Body() createVendorDto: CreateVendorDto) {
+  async create(@Body() createVendorDto: CreateSupplierDto) {
     try {
       ParseTrimFromDto(createVendorDto);
-      return await this.vendorsService.create(createVendorDto);
+      return await this.suppliersService.create(createVendorDto);
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);
@@ -34,7 +34,7 @@ export class VendorsController {
   @Get()
   async findAll() {
     try {
-      return this.vendorsService.findAll();
+      return this.suppliersService.findAll();
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);
@@ -47,7 +47,7 @@ export class VendorsController {
     try {
       if (isNaN(vendor_id))
         throw new BadRequestException('vendor_id should be a number');
-      const vendor = await this.vendorsService.findOne(vendor_id);
+      const vendor = await this.suppliersService.findOne(vendor_id);
       if (!vendor) throw new NotFoundException('Vendor not found');
       return vendor;
     } catch (error) {
@@ -60,15 +60,15 @@ export class VendorsController {
   @Patch(':vendor_id')
   async update(
     @Param('vendor_id') vendor_id: number,
-    @Body() updateVendorDto: UpdateVendorDto,
+    @Body() updateVendorDto: UpdateSupplierDto,
   ) {
     try {
       if (isNaN(vendor_id))
         throw new BadRequestException('vendor_id should be a number');
-      const vendor = await this.vendorsService.findOne(vendor_id);
+      const vendor = await this.suppliersService.findOne(vendor_id);
       if (!vendor) throw new NotFoundException('Vendor not found');
       ParseTrimFromDto(updateVendorDto);
-      return await this.vendorsService.update(vendor_id, updateVendorDto);
+      return await this.suppliersService.update(vendor_id, updateVendorDto);
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);
@@ -82,9 +82,9 @@ export class VendorsController {
     try {
       if (isNaN(vendor_id))
         throw new BadRequestException('vendor_id should be a number');
-      const vendor = await this.vendorsService.findOne(vendor_id);
+      const vendor = await this.suppliersService.findOne(vendor_id);
       if (!vendor) throw new NotFoundException('Vendor not found');
-      await this.vendorsService.remove(vendor_id);
+      await this.suppliersService.remove(vendor_id);
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);

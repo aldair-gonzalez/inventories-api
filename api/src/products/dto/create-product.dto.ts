@@ -51,5 +51,5 @@ export class CreateProductDto {
 
   @IsNotEmpty()
   @IsNumber()
-  vendor: number;
+  supplier: number;
 }
