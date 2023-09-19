@@ -62,23 +62,31 @@ export class CategoriesController {
     @Param('category_id') category_id: number,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    if (isNaN(+category_id))
-      throw new BadRequestException('category_id should be a number');
-    const category = await this.categoriesService.findOne(category_id);
-    if (!category) throw new NotFoundException('category not found');
-    ParseTrimFromDto(UpdateCategoryDto);
-    return await this.categoriesService.update(+category_id, updateCategoryDto);
+    try {
+      if (isNaN(category_id))
+        throw new BadRequestException('category_id should be a number');
+      const category = await this.categoriesService.findOne(category_id);
+      if (!category) throw new NotFoundException('category not found');
+      ParseTrimFromDto(UpdateCategoryDto);
+      return await this.categoriesService.update(
+        category_id,
+        updateCategoryDto,
+      );
+    } catch (error) {
+      if (error.name || error.sqlState)
+        throw new BadRequestException(error.message);
+    }
   }
 
   @Delete(':category_id')
   @HttpCode(204)
   async remove(@Param('category_id') category_id: number) {
     try {
-      if (isNaN(+category_id))
+      if (isNaN(category_id))
         throw new BadRequestException('category_id should be a number');
       const category = await this.categoriesService.findOne(category_id);
       if (!category) throw new NotFoundException('category not found');
-      await this.categoriesService.remove(+category_id);
+      await this.categoriesService.remove(category_id);
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);
