@@ -11,6 +11,7 @@ import { VendorsModule } from './vendors/vendors.module';
 import { ProductsModule } from './products/products.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { FinancesModule } from './finances/finances.module';
+import { OrderStatusesModule } from './order-statuses/order-statuses.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
@@ -18,6 +19,7 @@ import { Vendors } from './vendors/entities/vendor.entity';
 import { Products } from './products/entities/product.entity';
 import { Transactions } from './transactions/entities/transaction.entity';
 import { Finances } from './finances/entities/finance.entity';
+import { OrderStatuses } from './order-statuses/entities/order-status.entity';
 
 @Module({
   imports: [
@@ -43,7 +45,14 @@ import { Finances } from './finances/entities/finance.entity';
         username: configService.get<string>('database.username'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
-        entities: [Categories, Vendors, Products, Transactions, Finances],
+        entities: [
+          Categories,
+          Vendors,
+          Products,
+          Transactions,
+          Finances,
+          OrderStatuses,
+        ],
       }),
       inject: [ConfigService],
     }),
@@ -52,6 +61,7 @@ import { Finances } from './finances/entities/finance.entity';
     ProductsModule,
     TransactionsModule,
     FinancesModule,
+    OrderStatusesModule,
   ],
   controllers: [],
   providers: [],
