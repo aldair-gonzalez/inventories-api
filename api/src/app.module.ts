@@ -21,6 +21,7 @@ import { Products } from './products/entities/product.entity';
 import { Transactions } from './transactions/entities/transaction.entity';
 import { Finances } from './finances/entities/finance.entity';
 import { OrderStatuses } from './order-statuses/entities/order-status.entity';
+import { PurchaseOrders } from './purchase-orders/entities/purchase-order.entity';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { OrderStatuses } from './order-statuses/entities/order-status.entity';
           Transactions,
           Finances,
           OrderStatuses,
+          PurchaseOrders,
         ],
       }),
       inject: [ConfigService],
