@@ -15,7 +15,9 @@ export class Finances {
   @Column()
   date: Date;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   amount: number;
 
   @Column()
