@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, Min } from 'class-validator';
 
 export class CreatePurchaseOrderDto {
   @IsOptional()
@@ -13,7 +13,10 @@ export class CreatePurchaseOrderDto {
   delivery_date: Date;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   total_amount: number;
 
   @IsNotEmpty()

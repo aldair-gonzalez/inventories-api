@@ -19,7 +19,9 @@ export class PurchaseOrders {
   @Column()
   delivery_date: Date;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   total_amount: number;
 
   @ManyToOne(() => Suppliers)
