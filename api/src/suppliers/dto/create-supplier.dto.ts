@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateSupplierDto {
   @IsNotEmpty()
@@ -33,6 +39,9 @@ export class CreateSupplierDto {
   website: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   credit_limit: number;
 }

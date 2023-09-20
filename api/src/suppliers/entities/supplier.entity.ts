@@ -32,6 +32,8 @@ export class Suppliers {
   @Column({ unique: true })
   website: string;
 
-  @Column({})
+  @Column({
+    type: 'decimal',
+  })
   credit_limit: number;
 }
