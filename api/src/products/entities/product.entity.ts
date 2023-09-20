@@ -25,25 +25,39 @@ export class Products {
   @Column()
   unit_measure: string;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   quantity: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   stock_min: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   stock_max: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   sale_price: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   demand: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   initial_quantity: number;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+  })
   final_quantity: number;
 
   @ManyToOne(() => Categories)

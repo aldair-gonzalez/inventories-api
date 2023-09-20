@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
@@ -18,31 +24,52 @@ export class CreateProductDto {
   unit_measure: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   quantity: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   stock_min: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   stock_max: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   sale_price: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   demand: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   initial_quantity: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsNumber({
+    maxDecimalPlaces: 3,
+  })
+  @Min(0.001)
   final_quantity: number;
 
   @IsNotEmpty()
