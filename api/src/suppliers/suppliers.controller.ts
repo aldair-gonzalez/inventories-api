@@ -34,7 +34,7 @@ export class SuppliersController {
   @Get()
   async findAll() {
     try {
-      return this.suppliersService.findAll();
+      return await this.suppliersService.findAll();
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);

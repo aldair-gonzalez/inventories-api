@@ -13,11 +13,11 @@ export class SuppliersService {
   ) {}
 
   async create(createVendorDto: CreateSupplierDto): Promise<Suppliers> {
-    return this.vendorsRepository.save(createVendorDto);
+    return await this.vendorsRepository.save(createVendorDto);
   }
 
   async findAll(): Promise<Suppliers[]> {
-    return this.vendorsRepository.find();
+    return await this.vendorsRepository.find();
   }
 
   async findOne(supplier_id: number): Promise<Suppliers> {
