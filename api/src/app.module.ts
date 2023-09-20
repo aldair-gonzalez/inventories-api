@@ -13,6 +13,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { FinancesModule } from './finances/finances.module';
 import { OrderStatusesModule } from './order-statuses/order-statuses.module';
 import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
+import { PurchaseOrderDetailsModule } from './purchase-order-details/purchase-order-details.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
@@ -22,6 +23,7 @@ import { Transactions } from './transactions/entities/transaction.entity';
 import { Finances } from './finances/entities/finance.entity';
 import { OrderStatuses } from './order-statuses/entities/order-status.entity';
 import { PurchaseOrders } from './purchase-orders/entities/purchase-order.entity';
+import { PurchaseOrderDetails } from './purchase-order-details/entities/purchase-order-detail.entity';
 
 @Module({
   imports: [
@@ -55,6 +57,7 @@ import { PurchaseOrders } from './purchase-orders/entities/purchase-order.entity
           Finances,
           OrderStatuses,
           PurchaseOrders,
+          PurchaseOrderDetails,
         ],
       }),
       inject: [ConfigService],
@@ -66,6 +69,7 @@ import { PurchaseOrders } from './purchase-orders/entities/purchase-order.entity
     FinancesModule,
     OrderStatusesModule,
     PurchaseOrdersModule,
+    PurchaseOrderDetailsModule,
   ],
   controllers: [],
   providers: [],
