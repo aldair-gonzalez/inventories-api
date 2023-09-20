@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS purchase_orders (
 );
 
 CREATE TABLE IF NOT EXISTS purchase_order_details (
-	purchase_order_details_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	purchase_order_detail_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	quantity FLOAT NOT NULL,
 	price FLOAT NOT NULL,
 	product BIGINT NOT NULL,
