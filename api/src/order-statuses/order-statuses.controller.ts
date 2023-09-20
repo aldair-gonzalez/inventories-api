@@ -22,7 +22,7 @@ export class OrderStatusesController {
   async create(@Body() createOrderStatusDto: CreateOrderStatusDto) {
     try {
       ParseTrimFromDto(createOrderStatusDto);
-      return this.orderStatusesService.create(createOrderStatusDto);
+      return await this.orderStatusesService.create(createOrderStatusDto);
     } catch (error) {
       if (error.name || error.sqlState)
         throw new BadRequestException(error.message);
