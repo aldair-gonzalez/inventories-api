@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS inventories (
 	lot BIGINT,
 	FOREIGN KEY (product) REFERENCES products(product_id),
 	FOREIGN KEY (purchase_order) REFERENCES purchase_orders(purchase_order_id),
-	FOREIGN KEY (lot) REFERENCES lots(lot_number)
+	FOREIGN KEY (lot) REFERENCES lots(lot_id)
 );
 
 CREATE TABLE IF NOT EXISTS discounts (
