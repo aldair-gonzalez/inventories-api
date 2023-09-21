@@ -14,6 +14,7 @@ import { FinancesModule } from './finances/finances.module';
 import { OrderStatusesModule } from './order-statuses/order-statuses.module';
 import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
 import { PurchaseOrderDetailsModule } from './purchase-order-details/purchase-order-details.module';
+import { LotsModule } from './lots/lots.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
@@ -24,6 +25,7 @@ import { Finances } from './finances/entities/finance.entity';
 import { OrderStatuses } from './order-statuses/entities/order-status.entity';
 import { PurchaseOrders } from './purchase-orders/entities/purchase-order.entity';
 import { PurchaseOrderDetails } from './purchase-order-details/entities/purchase-order-detail.entity';
+import { Lots } from './lots/entities/lot.entity';
 
 @Module({
   imports: [
@@ -58,6 +60,7 @@ import { PurchaseOrderDetails } from './purchase-order-details/entities/purchase
           OrderStatuses,
           PurchaseOrders,
           PurchaseOrderDetails,
+          Lots,
         ],
       }),
       inject: [ConfigService],
@@ -70,6 +73,7 @@ import { PurchaseOrderDetails } from './purchase-order-details/entities/purchase
     OrderStatusesModule,
     PurchaseOrdersModule,
     PurchaseOrderDetailsModule,
+    LotsModule,
   ],
   controllers: [],
   providers: [],
