@@ -15,6 +15,7 @@ import { OrderStatusesModule } from './order-statuses/order-statuses.module';
 import { PurchaseOrdersModule } from './purchase-orders/purchase-orders.module';
 import { PurchaseOrderDetailsModule } from './purchase-order-details/purchase-order-details.module';
 import { LotsModule } from './lots/lots.module';
+import { InventoriesModule } from './inventories/inventories.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
@@ -26,6 +27,7 @@ import { OrderStatuses } from './order-statuses/entities/order-status.entity';
 import { PurchaseOrders } from './purchase-orders/entities/purchase-order.entity';
 import { PurchaseOrderDetails } from './purchase-order-details/entities/purchase-order-detail.entity';
 import { Lots } from './lots/entities/lot.entity';
+import { Inventories } from './inventories/entities/inventory.entity';
 
 @Module({
   imports: [
@@ -61,6 +63,7 @@ import { Lots } from './lots/entities/lot.entity';
           PurchaseOrders,
           PurchaseOrderDetails,
           Lots,
+          Inventories,
         ],
       }),
       inject: [ConfigService],
@@ -74,6 +77,7 @@ import { Lots } from './lots/entities/lot.entity';
     PurchaseOrdersModule,
     PurchaseOrderDetailsModule,
     LotsModule,
+    InventoriesModule,
   ],
   controllers: [],
   providers: [],
