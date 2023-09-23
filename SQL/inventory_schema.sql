@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS purchase_order_details (
 
 CREATE TABLE IF NOT EXISTS lots (
   lot_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	lot_number varchar(255) NOT NULL,
+	lot_number varchar(255) UNIQUE NOT NULL,
 	purchase_order BIGINT NOT NULL,
 	FOREIGN KEY (purchase_order) REFERENCES purchase_orders(purchase_order_id)
 );
