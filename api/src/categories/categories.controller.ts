@@ -102,12 +102,22 @@ export class CategoriesController {
       },
     },
   })
+  @ApiBadRequestResponse({
+    description: 'Bad Request',
+    schema: {
+      example: {
+        message: 'category_id should be a number',
+        error: 'Bad Request',
+        statusCode: 400,
+      },
+    },
+  })
   @ApiNotFoundResponse({
     description: 'Not Found',
     schema: {
       example: {
         message: 'category not found',
-        error: 'Bad Request',
+        error: 'Not Found',
         statusCode: 404,
       },
     },
@@ -143,7 +153,7 @@ export class CategoriesController {
     schema: {
       example: {
         message: 'category not found',
-        error: 'Bad Request',
+        error: 'Not Found',
         statusCode: 404,
       },
     },
@@ -188,7 +198,7 @@ export class CategoriesController {
     schema: {
       example: {
         message: 'category not found',
-        error: 'Bad Request',
+        error: 'Not Found',
         statusCode: 404,
       },
     },
