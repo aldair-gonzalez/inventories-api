@@ -12,7 +12,7 @@ export class Lots {
   @PrimaryGeneratedColumn()
   lot_id: number;
 
-  @Column()
+  @Column({ unique: true })
   lot_number: string;
 
   @ManyToOne(() => PurchaseOrders)
