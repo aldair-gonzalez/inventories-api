@@ -14,11 +14,48 @@ import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiFoundResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
+@ApiTags('categories')
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
+  @ApiOperation({ summary: 'Create a category' })
+  @ApiCreatedResponse({
+    description: 'The category has been successfully created.',
+    schema: {
+      example: {
+        name: 'PANADERIA',
+        description: 'PRODUCTOS ELABORADOS CON HARINA',
+        category_id: 1,
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'Bad Request',
+    schema: {
+      example: {
+        message: [
+          'name must be a string',
+          'name should not be empty',
+          'description must be a string',
+          'description should not be empty',
+        ],
+        error: 'Bad Request',
+        statusCode: 400,
+      },
+    },
+  })
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
     try {
@@ -31,6 +68,19 @@ export class CategoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all categories' })
+  @ApiFoundResponse({
+    description: 'The categories has been successfully retrieved.',
+    schema: {
+      example: [
+        {
+          category_id: 1,
+          name: 'PANADERIA',
+          description: 'PRODUCTOS ELABORADOS CON HARINA',
+        },
+      ],
+    },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +92,27 @@ export class CategoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get one category' })
+  @ApiOkResponse({
+    description: 'The category has been successfully retrieved.',
+    schema: {
+      example: {
+        category_id: 1,
+        name: 'PANADERIA',
+        description: 'PRODUCTOS ELABORADOS CON HARINA',
+      },
+    },
+  })
+  @ApiNotFoundResponse({
+    description: 'Not Found',
+    schema: {
+      example: {
+        message: 'category not found',
+        error: 'Bad Request',
+        statusCode: 404,
+      },
+    },
+  })
   @Get(':category_id')
   async findOne(@Param('category_id') category_id: number) {
     try {
@@ -57,6 +128,38 @@ export class CategoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Update one category' })
+  @ApiOkResponse({
+    description: 'The category has been successfully updated.',
+    schema: {
+      example: {
+        generatedMaps: [],
+        raw: [],
+        affected: 1,
+      },
+    },
+  })
+  @ApiNotFoundResponse({
+    description: 'Not Found',
+    schema: {
+      example: {
+        message: 'category not found',
+        error: 'Bad Request',
+        statusCode: 404,
+      },
+    },
+  })
+  @ApiBadRequestResponse({
+    description: 'Bad Request',
+    schema: {
+      example: {
+        message:
+          'Cannot perform update query because update values are not defined. Call "qb.set(...)" method to specify updated values.',
+        error: 'Bad Request',
+        statusCode: 400,
+      },
+    },
+  })
   @Patch(':category_id')
   async update(
     @Param('category_id') category_id: number,
@@ -78,6 +181,18 @@ export class CategoriesController {
     }
   }
 
+  @ApiNoContentResponse({
+    description: 'The category has been successfully deleted.',
+  })
+  @ApiNotFoundResponse({
+    schema: {
+      example: {
+        message: 'category not found',
+        error: 'Bad Request',
+        statusCode: 404,
+      },
+    },
+  })
   @Delete(':category_id')
   @HttpCode(204)
   async remove(@Param('category_id') category_id: number) {
