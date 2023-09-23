@@ -180,6 +180,7 @@ export class CategoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete one category' })
   @ApiNoContentResponse({
     description: 'The category has been successfully deleted.',
   })
