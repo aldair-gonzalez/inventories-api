@@ -17,7 +17,6 @@ import { ParseTrimFromDto } from 'src/utils/trim';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
-  ApiFoundResponse,
   ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -69,7 +68,7 @@ export class CategoriesController {
   }
 
   @ApiOperation({ summary: 'Get all categories' })
-  @ApiFoundResponse({
+  @ApiOkResponse({
     description: 'The categories has been successfully retrieved.',
     schema: {
       example: [
