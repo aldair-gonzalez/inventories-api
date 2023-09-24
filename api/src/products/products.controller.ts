@@ -44,9 +44,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Create a product' })
   @ApiCreatedResponse({
     description: 'The product has been successfully created.',
-    schema: {
-      example: ProductExample,
-    },
+    schema: { example: ProductExample },
   })
   @ApiBadRequestResponse(BadRequestExample)
   @Post()
@@ -64,9 +62,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Get all products' })
   @ApiOkResponse({
     description: 'The products have been successfully retrieved.',
-    schema: {
-      example: [ProductExample, ProductExample],
-    },
+    schema: { example: [ProductExample, ProductExample] },
   })
   @Get()
   async findAll() {
@@ -82,9 +78,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Get a product' })
   @ApiOkResponse({
     description: 'The product has been successfully retrieved.',
-    schema: {
-      example: ProductExample,
-    },
+    schema: { example: ProductExample },
   })
   @ApiBadRequestResponse(BadRequestExample)
   @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
@@ -106,9 +100,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Update a product' })
   @ApiOkResponse({
     description: 'The product has been successfully updated.',
-    schema: {
-      example: UpdatedExample,
-    },
+    schema: { example: UpdatedExample },
   })
   @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @ApiBadRequestResponse(BadRequestExample)
