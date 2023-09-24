@@ -31,6 +31,20 @@ export const ProductExample = {
   },
 };
 
+export const SupplierExample = {
+  name: '',
+  description: '',
+  address: '',
+  city: '',
+  state: '',
+  zip_code: 11111,
+  phone_number: 1111111111,
+  email_address: '',
+  website: '',
+  credit_limit: 1,
+  supplier_id: 1,
+};
+
 export const CategoryExample = {
   name: '',
   description: '',
