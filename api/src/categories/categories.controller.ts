@@ -23,6 +23,18 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import {
+  BadRequestExample,
+  CategoryExample,
+  UpdatedExample,
+  deletedResponseExample,
+  notFoundResponseExample,
+} from 'src/utils/swagger.examples';
+
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({ objectName: 'category' }),
+  DeletedResponseExample: deletedResponseExample({ objectName: 'category' }),
+};
 
 @ApiTags('categories')
 @Controller('categories')
@@ -32,29 +44,9 @@ export class CategoriesController {
   @ApiOperation({ summary: 'Create a new category' })
   @ApiCreatedResponse({
     description: 'The category has been successfully created.',
-    schema: {
-      example: {
-        name: 'PANADERIA',
-        description: 'PRODUCTOS ELABORADOS CON HARINA',
-        category_id: 1,
-      },
-    },
+    schema: { example: CategoryExample },
   })
-  @ApiBadRequestResponse({
-    description: 'Bad Request',
-    schema: {
-      example: {
-        message: [
-          'name must be a string',
-          'name should not be empty',
-          'description must be a string',
-          'description should not be empty',
-        ],
-        error: 'Bad Request',
-        statusCode: 400,
-      },
-    },
-  })
+  @ApiBadRequestResponse(BadRequestExample)
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
     try {
@@ -70,15 +62,7 @@ export class CategoriesController {
   @ApiOperation({ summary: 'Get all categories' })
   @ApiOkResponse({
     description: 'The categories has been successfully retrieved.',
-    schema: {
-      example: [
-        {
-          category_id: 1,
-          name: 'PANADERIA',
-          description: 'PRODUCTOS ELABORADOS CON HARINA',
-        },
-      ],
-    },
+    schema: { example: [CategoryExample, CategoryExample] },
   })
   @Get()
   async findAll() {
@@ -94,34 +78,10 @@ export class CategoriesController {
   @ApiOperation({ summary: 'Get one category' })
   @ApiOkResponse({
     description: 'The category has been successfully retrieved.',
-    schema: {
-      example: {
-        category_id: 1,
-        name: 'PANADERIA',
-        description: 'PRODUCTOS ELABORADOS CON HARINA',
-      },
-    },
+    schema: { example: CategoryExample },
   })
-  @ApiBadRequestResponse({
-    description: 'Bad Request',
-    schema: {
-      example: {
-        message: 'category_id should be a number',
-        error: 'Bad Request',
-        statusCode: 400,
-      },
-    },
-  })
-  @ApiNotFoundResponse({
-    description: 'Not Found',
-    schema: {
-      example: {
-        message: 'category not found',
-        error: 'Not Found',
-        statusCode: 404,
-      },
-    },
-  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':category_id')
   async findOne(@Param('category_id') category_id: number) {
     try {
@@ -140,35 +100,10 @@ export class CategoriesController {
   @ApiOperation({ summary: 'Update one category' })
   @ApiOkResponse({
     description: 'The category has been successfully updated.',
-    schema: {
-      example: {
-        generatedMaps: [],
-        raw: [],
-        affected: 1,
-      },
-    },
+    schema: { example: UpdatedExample },
   })
-  @ApiNotFoundResponse({
-    description: 'Not Found',
-    schema: {
-      example: {
-        message: 'category not found',
-        error: 'Not Found',
-        statusCode: 404,
-      },
-    },
-  })
-  @ApiBadRequestResponse({
-    description: 'Bad Request',
-    schema: {
-      example: {
-        message:
-          'Cannot perform update query because update values are not defined. Call "qb.set(...)" method to specify updated values.',
-        error: 'Bad Request',
-        statusCode: 400,
-      },
-    },
-  })
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
   @Patch(':category_id')
   async update(
     @Param('category_id') category_id: number,
@@ -191,18 +126,8 @@ export class CategoriesController {
   }
 
   @ApiOperation({ summary: 'Delete one category' })
-  @ApiNoContentResponse({
-    description: 'The category has been successfully deleted.',
-  })
-  @ApiNotFoundResponse({
-    schema: {
-      example: {
-        message: 'category not found',
-        error: 'Not Found',
-        statusCode: 404,
-      },
-    },
-  })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':category_id')
   @HttpCode(204)
   async remove(@Param('category_id') category_id: number) {

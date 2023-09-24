@@ -31,6 +31,12 @@ export const ProductExample = {
   },
 };
 
+export const CategoryExample = {
+  name: '',
+  description: '',
+  category_id: 1,
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
