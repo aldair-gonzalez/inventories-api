@@ -1,3 +1,23 @@
+export const CategoryExample = {
+  name: '',
+  description: '',
+  category_id: 1,
+};
+
+export const SupplierExample = {
+  name: '',
+  description: '',
+  address: '',
+  city: '',
+  state: '',
+  zip_code: 11111,
+  phone_number: 1111111111,
+  email_address: '',
+  website: '',
+  credit_limit: 1,
+  supplier_id: 1,
+};
+
 export const ProductExample = {
   product_id: 1,
   product_code: 1,
@@ -29,26 +49,6 @@ export const ProductExample = {
     website: '',
     credit_limit: 1,
   },
-};
-
-export const SupplierExample = {
-  name: '',
-  description: '',
-  address: '',
-  city: '',
-  state: '',
-  zip_code: 11111,
-  phone_number: 1111111111,
-  email_address: '',
-  website: '',
-  credit_limit: 1,
-  supplier_id: 1,
-};
-
-export const CategoryExample = {
-  name: '',
-  description: '',
-  category_id: 1,
 };
 
 export const UpdatedExample = {
