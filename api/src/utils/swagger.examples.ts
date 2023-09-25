@@ -57,6 +57,18 @@ export const TransactionExample = {
   transaction_id: 1,
 };
 
+export const FinanceExample = {
+  finance_id: 1,
+  date: '',
+  amount: 1,
+  description: '',
+  transaction: {
+    transaction_id: 1,
+    name: '',
+    description: '',
+  },
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
