@@ -51,6 +51,12 @@ export const ProductExample = {
   },
 };
 
+export const TransactionExample = {
+  name: '',
+  description: '',
+  transaction_id: 1,
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
