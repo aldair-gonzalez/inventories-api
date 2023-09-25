@@ -14,11 +14,37 @@ import { LotsService } from './lots.service';
 import { CreateLotDto } from './dto/create-lot.dto';
 import { UpdateLotDto } from './dto/update-lot.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  notFoundResponseExample,
+  deletedResponseExample,
+  LotExample,
+  BadRequestExample,
+} from '../utils/swagger.examples';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({ objectName: 'lots' }),
+  DeletedResponseExample: deletedResponseExample({ objectName: 'lots' }),
+};
+
+@ApiTags('lots')
 @Controller('lots')
 export class LotsController {
   constructor(private readonly lotsService: LotsService) {}
 
+  @ApiOperation({ summary: 'Create a lot' })
+  @ApiCreatedResponse({
+    description: 'The lot has been successfully created.',
+    schema: { example: LotExample },
+  })
   @Post()
   async create(@Body() createLotDto: CreateLotDto) {
     try {
@@ -31,6 +57,11 @@ export class LotsController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all lots' })
+  @ApiOkResponse({
+    description: 'The lots has been successfully retrieved',
+    schema: { example: [LotExample, LotExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +73,13 @@ export class LotsController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a lot' })
+  @ApiOkResponse({
+    description: 'The los has been successfully retrieved.',
+    schema: { example: LotExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':lot_id')
   async findOne(@Param('lot_id') lot_id: number) {
     try {
@@ -57,6 +95,13 @@ export class LotsController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a lot' })
+  @ApiOkResponse({
+    description: 'The lot has been successfully updated.',
+    schema: { example: LotExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':lot_id')
   async update(
     @Param('lot_id') lot_id: number,
@@ -76,6 +121,10 @@ export class LotsController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a lot' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':lot_id')
   @HttpCode(204)
   async remove(@Param('lot_id') lot_id: number) {

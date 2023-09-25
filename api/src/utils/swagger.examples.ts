@@ -126,6 +126,17 @@ export const PurchaseOrderDetailsExample = {
   },
 };
 
+export const LotExample = {
+  lot_id: 1,
+  lot_number: '',
+  purchase_order: {
+    purchase_order_id: 1,
+    date: '',
+    delivery_date: '',
+    total_amount: 1,
+  },
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
