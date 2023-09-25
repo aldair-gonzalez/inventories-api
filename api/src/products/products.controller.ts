@@ -126,6 +126,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Delete a product' })
   @ApiNoContentResponse(answerExamples.DeletedResponseExample)
   @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
   @Delete(':product_id')
   @HttpCode(204)
   async remove(@Param('product_id') product_id: number) {
