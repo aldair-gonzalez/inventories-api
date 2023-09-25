@@ -100,6 +100,32 @@ export const PurchaseOrderExample = {
   },
 };
 
+export const PurchaseOrderDetailsExample = {
+  purchase_order_detail_id: 1,
+  quantity: 1,
+  price: 1,
+  product: {
+    product_id: 1,
+    product_code: 1,
+    name: '',
+    description: '',
+    unit_measure: '',
+    quantity: 1,
+    stock_min: 1,
+    stock_max: 1,
+    sale_price: 1,
+    demand: 1,
+    initial_quantity: 1,
+    final_quantity: null,
+  },
+  purchase_order: {
+    purchase_order_id: 1,
+    date: '',
+    delivery_date: '',
+    total_amount: 1,
+  },
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
