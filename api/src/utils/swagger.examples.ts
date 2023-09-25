@@ -69,6 +69,12 @@ export const FinanceExample = {
   },
 };
 
+export const OrderStatusesExample = {
+  order_status_id: 1,
+  name: '',
+  description: '',
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
