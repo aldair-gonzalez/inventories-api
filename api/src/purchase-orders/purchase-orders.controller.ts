@@ -14,11 +14,41 @@ import { PurchaseOrdersService } from './purchase-orders.service';
 import { CreatePurchaseOrderDto } from './dto/create-purchase-order.dto';
 import { UpdatePurchaseOrderDto } from './dto/update-purchase-order.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import {
+  notFoundResponseExample,
+  deletedResponseExample,
+  PurchaseOrderExample,
+  BadRequestExample,
+} from '../utils/swagger.examples';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({
+    objectName: 'purchase order',
+  }),
+  DeletedResponseExample: deletedResponseExample({
+    objectName: 'purchase order',
+  }),
+};
+
+@ApiTags('purchase-orders')
 @Controller('purchase-orders')
 export class PurchaseOrdersController {
   constructor(private readonly purchaseOrdersService: PurchaseOrdersService) {}
 
+  @ApiOperation({ summary: 'Create purchase order' })
+  @ApiCreatedResponse({
+    description: 'The purchase order has been successfully created.',
+    schema: { example: PurchaseOrderExample },
+  })
   @Post()
   async create(@Body() createPurchaseOrderDto: CreatePurchaseOrderDto) {
     try {
@@ -31,6 +61,11 @@ export class PurchaseOrdersController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all purchase orders' })
+  @ApiOkResponse({
+    description: 'The purchase orders has been successfully retrieved.',
+    schema: { example: [PurchaseOrderExample, PurchaseOrderExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +77,13 @@ export class PurchaseOrdersController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a purchase order' })
+  @ApiOkResponse({
+    description: 'The purchase order has been successfully retrieved.',
+    schema: { example: PurchaseOrderExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':purchase_order_id')
   async findOne(@Param('purchase_order_id') purchase_order_id: number) {
     try {
@@ -60,6 +102,13 @@ export class PurchaseOrdersController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a purchase order' })
+  @ApiOkResponse({
+    description: 'The purchase order has been successfully updated.',
+    schema: { example: PurchaseOrderExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':purchase_order_id')
   async update(
     @Param('purchase_order_id') purchase_order_id: number,
@@ -85,6 +134,10 @@ export class PurchaseOrdersController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a purchase order' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':purchase_order_id')
   @HttpCode(204)
   async remove(@Param('purchase_order_id') purchase_order_id: number) {

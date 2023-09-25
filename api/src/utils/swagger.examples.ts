@@ -75,6 +75,31 @@ export const OrderStatusesExample = {
   description: '',
 };
 
+export const PurchaseOrderExample = {
+  purchase_order_id: 1,
+  date: '',
+  delivery_date: '',
+  total_amount: 1,
+  supplier: {
+    supplier_id: 1,
+    name: '',
+    description: '',
+    address: '',
+    city: '',
+    state: '',
+    zip_code: 11111,
+    phone_number: 5611042722,
+    email_address: '',
+    website: '',
+    credit_limit: 1,
+  },
+  order_status: {
+    order_status_id: 1,
+    name: '',
+    description: '',
+  },
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
