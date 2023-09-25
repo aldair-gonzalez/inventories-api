@@ -13,11 +13,37 @@ import { InventoriesService } from './inventories.service';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
 import { UpdateInventoryDto } from './dto/update-inventory.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import {
+  notFoundResponseExample,
+  deletedResponseExample,
+  InventoryExample,
+  BadRequestExample,
+} from '../utils/swagger.examples';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({ objectName: 'inventory' }),
+  DeletedResponseExample: deletedResponseExample({ objectName: 'inventory' }),
+};
+
+@ApiTags('inventories')
 @Controller('inventories')
 export class InventoriesController {
   constructor(private readonly inventoriesService: InventoriesService) {}
 
+  @ApiOperation({ summary: 'Create inventory' })
+  @ApiCreatedResponse({
+    description: 'The inventory has been successfully created',
+    schema: { example: InventoryExample },
+  })
   @Post()
   async create(@Body() createInventoryDto: CreateInventoryDto) {
     try {
@@ -30,6 +56,11 @@ export class InventoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all inventories' })
+  @ApiOkResponse({
+    description: 'The inventories have been successfully retrieved',
+    schema: { example: [InventoryExample, InventoryExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -41,6 +72,13 @@ export class InventoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a inventory' })
+  @ApiOkResponse({
+    description: 'The inventory has been successfully retrieved.',
+    schema: { example: InventoryExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':inventory_id')
   async findOne(@Param('inventory_id') inventory_id: number) {
     try {
@@ -56,6 +94,13 @@ export class InventoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a inventory' })
+  @ApiOkResponse({
+    description: 'The inventory has been successfully updated.',
+    schema: { example: InventoryExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':inventory_id')
   async update(
     @Param('inventory_id') inventory_id: number,
@@ -78,6 +123,10 @@ export class InventoriesController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a inventory' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':inventory_id')
   async remove(@Param('inventory_id') inventory_id: number) {
     try {

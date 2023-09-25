@@ -137,6 +137,35 @@ export const LotExample = {
   },
 };
 
+export const InventoryExample = {
+  inventory_id: 1,
+  quantity: 1,
+  unit_cost: 1,
+  purchase_date: '',
+  expiration_date: '',
+  product: {
+    product_id: 1,
+    product_code: 1,
+    name: '',
+    description: '',
+    unit_measure: '',
+    quantity: 1,
+    stock_min: 1,
+    stock_max: 1,
+    sale_price: 1,
+    demand: 1,
+    initial_quantity: 1,
+    final_quantity: null,
+  },
+  purchase_order: {
+    purchase_order_id: 1,
+    date: '',
+    delivery_date: '',
+    total_amount: 1,
+  },
+  lot: null,
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],
