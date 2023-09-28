@@ -166,6 +166,28 @@ export const InventoryExample = {
   lot: null,
 };
 
+export const DiscountExample = {
+  discount_id: 1,
+  discount_type: '',
+  discount_amount: 1,
+  discount_start_date: '',
+  discount_end_date: '',
+  product: {
+    product_id: 1,
+    product_code: 1,
+    name: '',
+    description: '',
+    unit_measure: '',
+    quantity: 1,
+    stock_min: 1,
+    stock_max: 1,
+    sale_price: 1,
+    demand: 1,
+    initial_quantity: 1,
+    final_quantity: null,
+  },
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],

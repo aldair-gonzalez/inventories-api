@@ -14,11 +14,37 @@ import { DiscountsService } from './discounts.service';
 import { CreateDiscountDto } from './dto/create-discount.dto';
 import { UpdateDiscountDto } from './dto/update-discount.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  BadRequestExample,
+  DiscountExample,
+  deletedResponseExample,
+  notFoundResponseExample,
+} from 'src/utils/swagger.examples';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({ objectName: 'discounts' }),
+  DeletedResponseExample: deletedResponseExample({ objectName: 'discounts' }),
+};
+
+@ApiTags('discounts')
 @Controller('discounts')
 export class DiscountsController {
   constructor(private readonly discountsService: DiscountsService) {}
 
+  @ApiOperation({ summary: 'Create a discount' })
+  @ApiCreatedResponse({
+    description: 'The discount has been succesfully created',
+    schema: { example: DiscountExample },
+  })
   @Post()
   async create(@Body() createDiscountDto: CreateDiscountDto) {
     try {
@@ -31,6 +57,11 @@ export class DiscountsController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all discounts' })
+  @ApiOkResponse({
+    description: 'The discounts have been succesfully retrieved',
+    schema: { example: [DiscountExample, DiscountExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +73,13 @@ export class DiscountsController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a discount' })
+  @ApiOkResponse({
+    description: 'The discount has been succesfully retrieved',
+    schema: { example: DiscountExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':discount_id')
   async findOne(@Param('discount_id') discount_id: number) {
     try {
@@ -57,6 +95,13 @@ export class DiscountsController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a discount' })
+  @ApiOkResponse({
+    description: 'The discount has been succesfully updated',
+    schema: { example: DiscountExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':discount_id')
   async update(
     @Param('discount_id') discount_id: number,
@@ -76,6 +121,10 @@ export class DiscountsController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a discount' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':discount_id')
   @HttpCode(204)
   async remove(@Param('discount_id') discount_id: number) {
