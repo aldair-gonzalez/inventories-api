@@ -17,6 +17,7 @@ import { PurchaseOrderDetailsModule } from './purchase-order-details/purchase-or
 import { LotsModule } from './lots/lots.module';
 import { InventoriesModule } from './inventories/inventories.module';
 import { DiscountsModule } from './discounts/discounts.module';
+import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
@@ -30,6 +31,7 @@ import { PurchaseOrderDetails } from './purchase-order-details/entities/purchase
 import { Lots } from './lots/entities/lot.entity';
 import { Inventories } from './inventories/entities/inventory.entity';
 import { Discounts } from './discounts/entities/discount.entity';
+import { PaymentMethods } from './payment-methods/entities/payment-method.entity';
 
 @Module({
   imports: [
@@ -67,6 +69,7 @@ import { Discounts } from './discounts/entities/discount.entity';
           Lots,
           Inventories,
           Discounts,
+          PaymentMethods,
         ],
       }),
       inject: [ConfigService],
@@ -82,6 +85,7 @@ import { Discounts } from './discounts/entities/discount.entity';
     LotsModule,
     InventoriesModule,
     DiscountsModule,
+    PaymentMethodsModule,
   ],
   controllers: [],
   providers: [],
