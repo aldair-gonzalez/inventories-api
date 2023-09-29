@@ -8,6 +8,7 @@ import {
   Delete,
   BadRequestException,
   NotFoundException,
+  HttpCode,
 } from '@nestjs/common';
 import { InventoriesService } from './inventories.service';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
@@ -128,6 +129,7 @@ export class InventoriesController {
   @ApiBadRequestResponse(BadRequestExample)
   @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':inventory_id')
+  @HttpCode(204)
   async remove(@Param('inventory_id') inventory_id: number) {
     try {
       if (isNaN(inventory_id))
