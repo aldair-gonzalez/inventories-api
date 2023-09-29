@@ -188,6 +188,17 @@ export const DiscountExample = {
   },
 };
 
+export const SaleExample = {
+  sale_id: 1,
+  date: '',
+  total_amount: 1,
+  payment_method: {
+    payment_method_id: 1,
+    name: '',
+    description: '',
+  },
+};
+
 export const PaymentMethodExample = {
   payment_method_id: 1,
   name: '',

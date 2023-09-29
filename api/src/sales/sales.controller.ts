@@ -14,11 +14,37 @@ import { SalesService } from './sales.service';
 import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import {
+  BadRequestExample,
+  SaleExample,
+  deletedResponseExample,
+  notFoundResponseExample,
+} from 'src/utils/swagger.examples';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({ objectName: 'sales' }),
+  DeletedResponseExample: deletedResponseExample({ objectName: 'sales' }),
+};
+
+@ApiTags('sales')
 @Controller('sales')
 export class SalesController {
   constructor(private readonly salesService: SalesService) {}
 
+  @ApiOperation({ summary: 'Create a sale' })
+  @ApiCreatedResponse({
+    description: 'The sale has been succesfully created',
+    schema: { example: SaleExample },
+  })
   @Post()
   async create(@Body() createSaleDto: CreateSaleDto) {
     try {
@@ -31,6 +57,11 @@ export class SalesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all sales' })
+  @ApiOkResponse({
+    description: 'The sales have been succesfully retrieved',
+    schema: { example: [SaleExample, SaleExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +73,13 @@ export class SalesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a sale' })
+  @ApiOkResponse({
+    description: 'The sale has been succesfully retrieved',
+    schema: { example: SaleExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':sale_id')
   async findOne(@Param('sale_id') sale_id: number) {
     try {
@@ -57,6 +95,13 @@ export class SalesController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a sale' })
+  @ApiOkResponse({
+    description: 'The sale has been succesfully updated',
+    schema: { example: SaleExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':sale_id')
   async update(
     @Param('sale_id') sale_id: number,
@@ -76,6 +121,10 @@ export class SalesController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a sale' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':sale_id')
   @HttpCode(204)
   async remove(@Param('sale_id') sale_id: number) {
