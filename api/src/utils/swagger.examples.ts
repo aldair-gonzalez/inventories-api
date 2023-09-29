@@ -231,6 +231,12 @@ export const UpdatedExample = {
   affected: 1,
 };
 
+export const LossesTypeExample = {
+  loss_type_id: 1,
+  name: '',
+  description: '',
+};
+
 export const BadRequestExample = {
   description: 'Bad Request',
   schema: {
