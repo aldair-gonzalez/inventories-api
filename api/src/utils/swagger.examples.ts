@@ -199,6 +199,26 @@ export const SaleExample = {
   },
 };
 
+export const SaleDetailsExample = {
+  sale_id: 1,
+  quantity: 1,
+  price: 1,
+  product: {
+    product_id: 1,
+    product_code: 1,
+    name: '',
+    description: '',
+    unit_measure: '',
+    quantity: 1,
+    stock_min: 1,
+    stock_max: 1,
+    sale_price: 1,
+    demand: 1,
+    initial_quantity: 1,
+    final_quantity: null,
+  },
+};
+
 export const PaymentMethodExample = {
   payment_method_id: 1,
   name: '',
