@@ -188,6 +188,12 @@ export const DiscountExample = {
   },
 };
 
+export const PaymentMethodExample = {
+  payment_method_id: 1,
+  name: '',
+  description: '',
+};
+
 export const UpdatedExample = {
   generatedMaps: [],
   raw: [],

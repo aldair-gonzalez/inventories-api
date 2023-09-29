@@ -14,11 +14,37 @@ import { PaymentMethodsService } from './payment-methods.service';
 import { CreatePaymentMethodDto } from './dto/create-payment-method.dto';
 import { UpdatePaymentMethodDto } from './dto/update-payment-method.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import {
+  BadRequestExample,
+  PaymentMethodExample,
+  deletedResponseExample,
+  notFoundResponseExample,
+} from 'src/utils/swagger.examples';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({ objectName: 'inventory' }),
+  DeletedResponseExample: deletedResponseExample({ objectName: 'inventory' }),
+};
+
+@ApiTags('payment-methods')
 @Controller('payment-methods')
 export class PaymentMethodsController {
   constructor(private readonly paymentMethodsService: PaymentMethodsService) {}
 
+  @ApiOperation({ summary: 'Create payment method' })
+  @ApiCreatedResponse({
+    description: 'The payment method has been successfully created',
+    schema: { example: PaymentMethodExample },
+  })
   @Post()
   async create(@Body() createPaymentMethodDto: CreatePaymentMethodDto) {
     try {
@@ -31,6 +57,11 @@ export class PaymentMethodsController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all payment methods' })
+  @ApiOkResponse({
+    description: 'The payment methods have been successfully retrieved',
+    schema: { example: [PaymentMethodExample, PaymentMethodExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +73,13 @@ export class PaymentMethodsController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a payment method' })
+  @ApiOkResponse({
+    description: 'The payment method has been successfully retrieved.',
+    schema: { example: PaymentMethodExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':payment_method_id')
   async findOne(@Param('payment_method_id') payment_method_id: number) {
     try {
@@ -60,6 +98,13 @@ export class PaymentMethodsController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a payment method' })
+  @ApiOkResponse({
+    description: 'The payment method has been successfully updated.',
+    schema: { example: PaymentMethodExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':payment_method_id')
   async update(
     @Param('payment_method_id') payment_method_id: number,
@@ -85,6 +130,10 @@ export class PaymentMethodsController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a payment method' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':payment_method_id')
   @HttpCode(204)
   async remove(@Param('payment_method_id') payment_method_id: number) {
