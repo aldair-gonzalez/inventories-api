@@ -9,7 +9,7 @@ Este proyecto es un sistema de inventarios desarrollado con NestJS. El sistema p
 
 ## Documentación
 
-La documentación del proyecto se encuentra en la carpeta `docs`.
+La documentación del proyecto se encuentra en la carpeta [/docs](docs).
 
 ## Licencia
 
