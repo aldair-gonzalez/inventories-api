@@ -21,6 +21,7 @@ import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 import { SalesModule } from './sales/sales.module';
 import { SalesDetailsModule } from './sales-details/sales-details.module';
 import { LossesTypeModule } from './losses-type/losses-type.module';
+import { LossesModule } from './losses/losses.module';
 
 // Entities
 import { Categories } from './categories/entities/category.entity';
@@ -38,6 +39,7 @@ import { PaymentMethods } from './payment-methods/entities/payment-method.entity
 import { Sales } from './sales/entities/sale.entity';
 import { SalesDetails } from './sales-details/entities/sales-detail.entity';
 import { LossesType } from './losses-type/entities/losses-type.entity';
+import { Losses } from './losses/entities/loss.entity';
 
 @Module({
   imports: [
@@ -79,6 +81,7 @@ import { LossesType } from './losses-type/entities/losses-type.entity';
           Sales,
           SalesDetails,
           LossesType,
+          Losses,
         ],
       }),
       inject: [ConfigService],
@@ -98,6 +101,7 @@ import { LossesType } from './losses-type/entities/losses-type.entity';
     SalesModule,
     SalesDetailsModule,
     LossesTypeModule,
+    LossesModule,
   ],
   controllers: [],
   providers: [],
