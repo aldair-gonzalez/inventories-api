@@ -7,10 +7,6 @@ Este proyecto es un sistema de inventarios desarrollado con NestJS. El sistema p
 * Registrar compras y ventas.
 * Generar informes de inventario.
 
-## Documentación
-
-La documentación del proyecto se encuentra en la carpeta [/docs](docs).
-
 ## Licencia
 
 Este proyecto está licenciado bajo la licencia Apache License 2.0.
