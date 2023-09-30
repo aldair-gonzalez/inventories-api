@@ -14,11 +14,41 @@ import { LossesService } from './losses.service';
 import { CreateLossDto } from './dto/create-loss.dto';
 import { UpdateLossDto } from './dto/update-loss.dto';
 import { ParseTrimFromDto } from 'src/utils/trim';
+import {
+  BadRequestExample,
+  LossesExample,
+  deletedResponseExample,
+  notFoundResponseExample,
+} from 'src/utils/swagger.examples';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
+const answerExamples = {
+  NotFoundResponseExample: notFoundResponseExample({
+    objectName: 'losses',
+  }),
+  DeletedResponseExample: deletedResponseExample({
+    objectName: 'losses',
+  }),
+};
+
+@ApiTags('losses')
 @Controller('losses')
 export class LossesController {
   constructor(private readonly lossesService: LossesService) {}
 
+  @ApiOperation({ summary: 'Create a losses details' })
+  @ApiCreatedResponse({
+    description: 'The losses details has been succesfully created',
+    schema: { example: LossesExample },
+  })
   @Post()
   async create(@Body() createLossDto: CreateLossDto) {
     try {
@@ -31,6 +61,11 @@ export class LossesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all losses details' })
+  @ApiOkResponse({
+    description: 'The losses details have been succesfully retrieved',
+    schema: { example: [LossesExample, LossesExample] },
+  })
   @Get()
   async findAll() {
     try {
@@ -42,6 +77,13 @@ export class LossesController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a losses details' })
+  @ApiOkResponse({
+    description: 'The losses details has been succesfully retrieved',
+    schema: { example: LossesExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Get(':loss_id')
   async findOne(@Param('loss_id') loss_id: number) {
     try {
@@ -57,6 +99,13 @@ export class LossesController {
     }
   }
 
+  @ApiOperation({ summary: 'Update a losses details' })
+  @ApiOkResponse({
+    description: 'The losses details has been succesfully updated',
+    schema: { example: LossesExample },
+  })
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Patch(':loss_id')
   async update(
     @Param('loss_id') loss_id: number,
@@ -76,6 +125,10 @@ export class LossesController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a losses details' })
+  @ApiNoContentResponse(answerExamples.DeletedResponseExample)
+  @ApiBadRequestResponse(BadRequestExample)
+  @ApiNotFoundResponse(answerExamples.NotFoundResponseExample)
   @Delete(':loss_id')
   @HttpCode(204)
   async remove(@Param('loss_id') loss_id: number) {

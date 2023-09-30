@@ -237,6 +237,33 @@ export const LossesTypeExample = {
   description: '',
 };
 
+export const LossesExample = {
+  loss_id: 1,
+  date: '',
+  description: '',
+  quantity: 1,
+  amount: 1,
+  product: {
+    product_id: 1,
+    product_code: 1,
+    name: '',
+    description: '',
+    unit_measure: '',
+    quantity: 1,
+    stock_min: 1,
+    stock_max: 1,
+    sale_price: 1,
+    demand: 1,
+    initial_quantity: 1,
+    final_quantity: null,
+  },
+  loss_type: {
+    loss_type_id: 1,
+    name: '',
+    description: '',
+  },
+};
+
 export const BadRequestExample = {
   description: 'Bad Request',
   schema: {
