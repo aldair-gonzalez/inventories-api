@@ -1,7 +1,7 @@
 {
-  "name": "api",
-  "version": "0.0.1",
-  "description": "",
+  "name": "inventories-api",
+  "version": "1.0.0",
+  "description": "Servidor para sistema de inventarios YAJID",
   "author": {
     "name": "Aldair González",
     "email": "aldairgome97@gmail.com",
